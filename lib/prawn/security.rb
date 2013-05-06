@@ -86,25 +86,24 @@ module Prawn
       #   not a limitation of Prawn, but is rather a built-in limitation of the
       #   PDF format.
       #
-      def encrypt_document(options={})
+      def encrypt_document(options = {})
         Prawn.verify_options [:user_password, :owner_password, :permissions],
           options
-        @user_password = options.delete(:user_password) || ""
+        @user_password = options[:user_password] || ""
 
-        @owner_password = options.delete(:owner_password) || @user_password
+        @owner_password = options[:owner_password] || @user_password
         if @owner_password == :random
           # Generate a completely ridiculous password
           @owner_password = (1..32).map{ rand(256) }.pack("c*")
         end
 
-        self.permissions = options.delete(:permissions) || {}
+        self.permissions = options[:permissions] || {}
 
         # Shove the necessary entries in the trailer and enable encryption.
         state.trailer[:Encrypt] = encryption_dictionary
-        state.encrypt = true
         state.encryption_key = user_encryption_key
       end
-      
+
       # Encrypts the given string under the given key, also requiring the
       # object ID and generation number of the reference.
       # See Algorithm 3.1.

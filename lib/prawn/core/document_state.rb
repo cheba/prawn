@@ -16,8 +16,6 @@ module Prawn
         @page                    = nil
         @trailer                 = {}
         @compress                = options.fetch(:compress, false)
-        @encrypt                 = options.fetch(:encrypt, false)
-        @encryption_key          = options[:encryption_key]
         @optimize_objects        = options.fetch(:optimize_objects, false)
         @skip_encoding           = options.fetch(:skip_encoding, false)
         @before_render_callbacks = []
@@ -25,7 +23,7 @@ module Prawn
       end
 
       attr_accessor :store, :version, :pages, :page, :trailer, :compress,
-        :encrypt, :encryption_key, :optimize_objects, :skip_encoding,
+        :encryption_key, :optimize_objects, :skip_encoding,
         :before_render_callbacks, :on_page_create_callback
 
       def populate_pages_from_store(document)
