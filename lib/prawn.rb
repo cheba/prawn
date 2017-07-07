@@ -12,9 +12,9 @@ begin
   require 'ttfunk'
 rescue LoadError
   puts "Failed to load ttfunk. If you are running Prawn from git:"
-  puts "  git submodule init"
-  puts "  git submodule update"
-  exit
+   puts "  git submodule init"
+    puts "  git submodule update"
+     exit
 end
 
 require "set"
